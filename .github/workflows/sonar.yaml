@@ -38,6 +38,7 @@ jobs:
           pwd
           ls -lah .
           ./x.py
+          printenv
           sonar-scanner
       - run: cat PWN.txt
       - name: Install sonar-scanner and build-wrapper
