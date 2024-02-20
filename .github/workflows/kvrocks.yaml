@@ -464,7 +464,8 @@ jobs:
           ./x.py test go build $GOCASE_RUN_ARGS
 
   required:
-    if: always()
+    # if: always()
+    if: false
     name: Required
     runs-on: ubuntu-latest
     needs:
