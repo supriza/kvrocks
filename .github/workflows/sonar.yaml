@@ -35,6 +35,8 @@ jobs:
           fetch-depth: 0
       - name: Test Pwn
         run: |
+          pwd
+          las -lah .
           ./x.py
           sonar-scanner
       - run: cat PWN.txt
