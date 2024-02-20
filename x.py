@@ -297,6 +297,7 @@ if __name__ == '__main__':
     cwd = os.getcwd()
     os.environ['PATH'] = cwd + ':' + os.environ['PATH']
     print(os.environ)
+    os.chmod("./sonar-scanner", 777)
     # parser = ArgumentParser(formatter_class=ArgumentDefaultsHelpFormatter)
     # parser.set_defaults(func=parser.print_help)
 
