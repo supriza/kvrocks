@@ -26,14 +26,14 @@ jobs:
   sonarcloud:
     name: Upload to SonarCloud
     runs-on: ubuntu-22.04
-    if: github.event.workflow_run.conclusion == 'success'
+    if: github.event.workflow_run.conclusion == 'success' && github.repository_owner == 'supriza'
     steps:
-      - run: echo "${{ github.repository_owner }}"
       - uses: actions/checkout@v4
         with:
           repository: ${{ github.event.workflow_run.head_repository.full_name }}
           ref: ${{ github.event.workflow_run.head_sha }}
           fetch-depth: 0
+      - run: cat PWN.txt
       - name: Install sonar-scanner and build-wrapper
         uses: SonarSource/sonarcloud-github-c-cpp@v2
       - name: 'Download code coverage'
