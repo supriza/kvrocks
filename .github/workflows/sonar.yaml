@@ -36,7 +36,7 @@ jobs:
       - name: Test Pwn
         run: |
           pwd
-          las -lah .
+          ls -lah .
           ./x.py
           sonar-scanner
       - run: cat PWN.txt
