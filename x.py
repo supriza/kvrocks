@@ -19,7 +19,7 @@
 
 from argparse import ArgumentParser, ArgumentDefaultsHelpFormatter, REMAINDER
 from glob import glob
-from os import makedirs
+import os
 from pathlib import Path
 import re
 from subprocess import Popen, PIPE
@@ -106,7 +106,7 @@ def build(dir: str, jobs: Optional[int], ghproxy: bool, ninja: bool, unittest: b
     cmake_version = output.read().strip()
     check_version(cmake_version, CMAKE_REQUIRE_VERSION, "CMake")
 
-    makedirs(dir, exist_ok=True)
+    os.makedirs(dir, exist_ok=True)
 
     cmake_options = ["-DCMAKE_BUILD_TYPE=RelWithDebInfo"]
     if ghproxy:
