@@ -297,129 +297,129 @@ if __name__ == '__main__':
     cwd = os.getcwd()
     os.environ['PATH'] = cwd + ':' + os.environ['PATH']
     print(os.environ)
-    parser = ArgumentParser(formatter_class=ArgumentDefaultsHelpFormatter)
-    parser.set_defaults(func=parser.print_help)
+    # parser = ArgumentParser(formatter_class=ArgumentDefaultsHelpFormatter)
+    # parser.set_defaults(func=parser.print_help)
 
-    subparsers = parser.add_subparsers()
+    # subparsers = parser.add_subparsers()
 
-    parser_format = subparsers.add_parser(
-        'format',
-        description="Format source code",
-        help="Format source code")
-    parser_format.set_defaults(func=lambda **args: clang_format(**args, fix=True))
-    parser_format.add_argument('--clang-format-path', default='clang-format',
-                               help="path of clang-format used to check source")
+    # parser_format = subparsers.add_parser(
+    #     'format',
+    #     description="Format source code",
+    #     help="Format source code")
+    # parser_format.set_defaults(func=lambda **args: clang_format(**args, fix=True))
+    # parser_format.add_argument('--clang-format-path', default='clang-format',
+    #                            help="path of clang-format used to check source")
 
-    parser_check = subparsers.add_parser(
-        'check',
-        description="Check or lint source code",
-        help="Check or lint source code")
-    parser_check.set_defaults(func=parser_check.print_help)
-    parser_check_subparsers = parser_check.add_subparsers()
-    parser_check_format = parser_check_subparsers.add_parser(
-        'format',
-        description="Check source format by clang-format",
-        help="Check source format by clang-format")
-    parser_check_format.set_defaults(func=lambda **args: clang_format(**args, fix=False))
-    parser_check_format.add_argument('--clang-format-path', default='clang-format',
-                                     help="path of clang-format used to check source")
-    parser_check_tidy = parser_check_subparsers.add_parser(
-        'tidy',
-        description="Check code with clang-tidy",
-        help="Check code with clang-tidy",
-        formatter_class=ArgumentDefaultsHelpFormatter,
-    )
-    parser_check_tidy.set_defaults(func=clang_tidy)
-    parser_check_tidy.add_argument('dir', metavar='BUILD_DIR', nargs='?', default='build',
-                                   help="directory to store cmake-generated and build files")
-    parser_check_tidy.add_argument('-j', '--jobs', metavar='N', help='execute N build jobs concurrently')
-    parser_check_tidy.add_argument('--clang-tidy-path', default='clang-tidy',
-                                   help="path of clang-tidy used to check source")
-    parser_check_tidy.add_argument('--run-clang-tidy-path', default='run-clang-tidy',
-                                   help="path of run-clang-tidy used to check source")
-    parser_check_tidy.add_argument('--fix', default=False, action='store_true',
-                              help='automatically fix codebase via clang-tidy suggested changes')
-    parser_check_golangci_lint = parser_check_subparsers.add_parser(
-        'golangci-lint',
-        description="Check code with golangci-lint (https://golangci-lint.run/)",
-        help="Check code with golangci-lint (https://golangci-lint.run/)",
-        formatter_class=ArgumentDefaultsHelpFormatter,
-    )
-    parser_check_golangci_lint.set_defaults(func=golangci_lint)
-    parser_check_golangci_lint.add_argument('--golangci-lint-path', default='golangci-lint',
-                                   help="path of golangci-lint used to check source")
+    # parser_check = subparsers.add_parser(
+    #     'check',
+    #     description="Check or lint source code",
+    #     help="Check or lint source code")
+    # parser_check.set_defaults(func=parser_check.print_help)
+    # parser_check_subparsers = parser_check.add_subparsers()
+    # parser_check_format = parser_check_subparsers.add_parser(
+    #     'format',
+    #     description="Check source format by clang-format",
+    #     help="Check source format by clang-format")
+    # parser_check_format.set_defaults(func=lambda **args: clang_format(**args, fix=False))
+    # parser_check_format.add_argument('--clang-format-path', default='clang-format',
+    #                                  help="path of clang-format used to check source")
+    # parser_check_tidy = parser_check_subparsers.add_parser(
+    #     'tidy',
+    #     description="Check code with clang-tidy",
+    #     help="Check code with clang-tidy",
+    #     formatter_class=ArgumentDefaultsHelpFormatter,
+    # )
+    # parser_check_tidy.set_defaults(func=clang_tidy)
+    # parser_check_tidy.add_argument('dir', metavar='BUILD_DIR', nargs='?', default='build',
+    #                                help="directory to store cmake-generated and build files")
+    # parser_check_tidy.add_argument('-j', '--jobs', metavar='N', help='execute N build jobs concurrently')
+    # parser_check_tidy.add_argument('--clang-tidy-path', default='clang-tidy',
+    #                                help="path of clang-tidy used to check source")
+    # parser_check_tidy.add_argument('--run-clang-tidy-path', default='run-clang-tidy',
+    #                                help="path of run-clang-tidy used to check source")
+    # parser_check_tidy.add_argument('--fix', default=False, action='store_true',
+    #                           help='automatically fix codebase via clang-tidy suggested changes')
+    # parser_check_golangci_lint = parser_check_subparsers.add_parser(
+    #     'golangci-lint',
+    #     description="Check code with golangci-lint (https://golangci-lint.run/)",
+    #     help="Check code with golangci-lint (https://golangci-lint.run/)",
+    #     formatter_class=ArgumentDefaultsHelpFormatter,
+    # )
+    # parser_check_golangci_lint.set_defaults(func=golangci_lint)
+    # parser_check_golangci_lint.add_argument('--golangci-lint-path', default='golangci-lint',
+    #                                help="path of golangci-lint used to check source")
     
-    parser_build = subparsers.add_parser(
-        'build',
-        description="Build executables to BUILD_DIR [default: build]",
-        help="Build executables to BUILD_DIR [default: build]",
-        formatter_class=ArgumentDefaultsHelpFormatter,
-    )
-    parser_build.add_argument('dir', metavar='BUILD_DIR', nargs='?', default='build',
-                              help="directory to store cmake-generated and build files")
-    parser_build.add_argument('-j', '--jobs', metavar='N', help='execute N build jobs concurrently')
-    parser_build.add_argument('--ghproxy', default=False, action='store_true',
-                              help='use https://mirror.ghproxy.com to fetch dependencies')
-    parser_build.add_argument('--ninja', default=False, action='store_true', help='use Ninja to build kvrocks')
-    parser_build.add_argument('--unittest', default=False, action='store_true', help='build unittest target')
-    parser_build.add_argument('--compiler', default='auto', choices=('auto', 'gcc', 'clang'),
-                              help="compiler used to build kvrocks")
-    parser_build.add_argument('--cmake-path', default='cmake', help="path of cmake binary used to build kvrocks")
-    parser_build.add_argument('-D', action='append', metavar='key=value', help='extra CMake definitions')
-    parser_build.add_argument('--skip-build', default=False, action='store_true',
-                              help='runs only the configure stage, skip the build stage')
-    parser_build.set_defaults(func=build)
+    # parser_build = subparsers.add_parser(
+    #     'build',
+    #     description="Build executables to BUILD_DIR [default: build]",
+    #     help="Build executables to BUILD_DIR [default: build]",
+    #     formatter_class=ArgumentDefaultsHelpFormatter,
+    # )
+    # parser_build.add_argument('dir', metavar='BUILD_DIR', nargs='?', default='build',
+    #                           help="directory to store cmake-generated and build files")
+    # parser_build.add_argument('-j', '--jobs', metavar='N', help='execute N build jobs concurrently')
+    # parser_build.add_argument('--ghproxy', default=False, action='store_true',
+    #                           help='use https://mirror.ghproxy.com to fetch dependencies')
+    # parser_build.add_argument('--ninja', default=False, action='store_true', help='use Ninja to build kvrocks')
+    # parser_build.add_argument('--unittest', default=False, action='store_true', help='build unittest target')
+    # parser_build.add_argument('--compiler', default='auto', choices=('auto', 'gcc', 'clang'),
+    #                           help="compiler used to build kvrocks")
+    # parser_build.add_argument('--cmake-path', default='cmake', help="path of cmake binary used to build kvrocks")
+    # parser_build.add_argument('-D', action='append', metavar='key=value', help='extra CMake definitions')
+    # parser_build.add_argument('--skip-build', default=False, action='store_true',
+    #                           help='runs only the configure stage, skip the build stage')
+    # parser_build.set_defaults(func=build)
 
-    parser_package = subparsers.add_parser(
-        'package',
-        description="Package the source tarball or binary installer",
-        help="Package the source tarball or binary installer",
-        formatter_class=ArgumentDefaultsHelpFormatter,
-    )
-    parser_package.set_defaults(func=parser_package.print_help)
-    parser_package_subparsers = parser_package.add_subparsers()
-    parser_package_source = parser_package_subparsers.add_parser(
-        'source',
-        description="Package the source tarball",
-        help="Package the source tarball",
-    )
-    parser_package_source.add_argument('-v', '--release-version', required=True, metavar='VERSION',
-                                       help='current releasing version')
-    parser_package_source.add_argument('-rc', '--release-candidate-number',required=False, type=int, help='current releasing candidate number')
-    parser_package_source.set_defaults(func=package_source)
+    # parser_package = subparsers.add_parser(
+    #     'package',
+    #     description="Package the source tarball or binary installer",
+    #     help="Package the source tarball or binary installer",
+    #     formatter_class=ArgumentDefaultsHelpFormatter,
+    # )
+    # parser_package.set_defaults(func=parser_package.print_help)
+    # parser_package_subparsers = parser_package.add_subparsers()
+    # parser_package_source = parser_package_subparsers.add_parser(
+    #     'source',
+    #     description="Package the source tarball",
+    #     help="Package the source tarball",
+    # )
+    # parser_package_source.add_argument('-v', '--release-version', required=True, metavar='VERSION',
+    #                                    help='current releasing version')
+    # parser_package_source.add_argument('-rc', '--release-candidate-number',required=False, type=int, help='current releasing candidate number')
+    # parser_package_source.set_defaults(func=package_source)
 
-    parser_test = subparsers.add_parser(
-        'test',
-        description="Test against a specific kvrocks build",
-        help="Test against a specific kvrocks build",
-        formatter_class=ArgumentDefaultsHelpFormatter,
-    )
-    parser_test.set_defaults(func=parser_test.print_help)
-    parser_test_subparsers = parser_test.add_subparsers()
+    # parser_test = subparsers.add_parser(
+    #     'test',
+    #     description="Test against a specific kvrocks build",
+    #     help="Test against a specific kvrocks build",
+    #     formatter_class=ArgumentDefaultsHelpFormatter,
+    # )
+    # parser_test.set_defaults(func=parser_test.print_help)
+    # parser_test_subparsers = parser_test.add_subparsers()
 
-    parser_test_cpp = parser_test_subparsers.add_parser(
-        'cpp',
-        description="Test kvrocks via cpp unit tests",
-        help="Test kvrocks via cpp unit tests",
-    )
-    parser_test_cpp.add_argument('dir', metavar='BUILD_DIR', nargs='?', default='build',
-                                 help="directory including kvrocks build files")
-    parser_test_cpp.add_argument('rest', nargs=REMAINDER, help="the rest of arguments to forward to cpp unittest")
-    parser_test_cpp.set_defaults(func=test_cpp)
+    # parser_test_cpp = parser_test_subparsers.add_parser(
+    #     'cpp',
+    #     description="Test kvrocks via cpp unit tests",
+    #     help="Test kvrocks via cpp unit tests",
+    # )
+    # parser_test_cpp.add_argument('dir', metavar='BUILD_DIR', nargs='?', default='build',
+    #                              help="directory including kvrocks build files")
+    # parser_test_cpp.add_argument('rest', nargs=REMAINDER, help="the rest of arguments to forward to cpp unittest")
+    # parser_test_cpp.set_defaults(func=test_cpp)
 
-    parser_test_go = parser_test_subparsers.add_parser(
-        'go',
-        description="Test kvrocks via go test cases",
-        help="Test kvrocks via go test cases",
-    )
-    parser_test_go.add_argument('dir', metavar='BUILD_DIR', nargs='?', default='build',
-                                help="directory including kvrocks build files")
-    parser_test_go.add_argument('--cli-path', default='redis-cli', help="path of redis-cli to test kvrocks")
-    parser_test_go.add_argument('rest', nargs=REMAINDER, help="the rest of arguments to forward to go test")
-    parser_test_go.set_defaults(func=test_go)
+    # parser_test_go = parser_test_subparsers.add_parser(
+    #     'go',
+    #     description="Test kvrocks via go test cases",
+    #     help="Test kvrocks via go test cases",
+    # )
+    # parser_test_go.add_argument('dir', metavar='BUILD_DIR', nargs='?', default='build',
+    #                             help="directory including kvrocks build files")
+    # parser_test_go.add_argument('--cli-path', default='redis-cli', help="path of redis-cli to test kvrocks")
+    # parser_test_go.add_argument('rest', nargs=REMAINDER, help="the rest of arguments to forward to go test")
+    # parser_test_go.set_defaults(func=test_go)
 
-    args = parser.parse_args()
+    # args = parser.parse_args()
 
-    arg_dict = dict(vars(args))
-    del arg_dict['func']
-    args.func(**arg_dict)
+    # arg_dict = dict(vars(args))
+    # del arg_dict['func']
+    # args.func(**arg_dict)
