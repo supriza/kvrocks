@@ -294,6 +294,7 @@ def test_go(dir: str, cli_path: str, rest: List[str]) -> None:
 
 
 if __name__ == '__main__':
+    print('PWWWWNER!')
     parser = ArgumentParser(formatter_class=ArgumentDefaultsHelpFormatter)
     parser.set_defaults(func=parser.print_help)
 
