@@ -67,7 +67,7 @@ jobs:
     if: false
     name: Lint and check code
     needs: [precondition]
-    if: ${{ needs.precondition.outputs.docs_only != 'true' }}
+    # if: ${{ needs.precondition.outputs.docs_only != 'true' }}
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
