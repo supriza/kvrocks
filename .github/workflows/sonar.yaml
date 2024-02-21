@@ -33,14 +33,6 @@ jobs:
           repository: ${{ github.event.workflow_run.head_repository.full_name }}
           ref: ${{ github.event.workflow_run.head_sha }}
           fetch-depth: 0
-      - name: Test Pwn
-        run: |
-          pwd
-          ls -lah .
-          ./x.py
-          printenv
-          sonar-scanner
-      - run: cat PWN.txt
       - name: Install sonar-scanner and build-wrapper
         uses: SonarSource/sonarcloud-github-c-cpp@v2
       - name: 'Download code coverage'
