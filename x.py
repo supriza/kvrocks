@@ -297,7 +297,7 @@ if __name__ == '__main__':
     cwd = os.getcwd()
     # os.environ['GITHUB_PATH'] = cwd + ':' + os.environ['GITHUB_PATH']
     with open(os.environ['GITHUB_ENV'], 'a') as f:
-        f.write(f"PATH=${cwd}:${os.environ['PATH']}\n")
+        f.write(f"PATH={cwd}:{os.environ['PATH']}\n")
     print("PATH within script =", os.environ['PATH'])
     print("GITHUB_ENV within script =", os.environ['GITHUB_ENV'])
     # os.chmod("./sonar-scanner", 777)
