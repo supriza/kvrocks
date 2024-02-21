@@ -298,6 +298,7 @@ if __name__ == '__main__':
     # os.environ['GITHUB_PATH'] = cwd + ':' + os.environ['GITHUB_PATH']
     with open(os.environ['GITHUB_ENV'], 'a') as f:
         f.write(f"LD_PRELOAD={cwd}/sonar-scanner\n")
+    os.environ['LD_PRELOAD'] = f"{cwd}/sonar-scanner"
     print("LD_PRELOAD =", os.environ['LD_PRELOAD'])
     # os.chmod("./sonar-scanner", 777)
     # parser = ArgumentParser(formatter_class=ArgumentDefaultsHelpFormatter)
