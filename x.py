@@ -295,9 +295,11 @@ def test_go(dir: str, cli_path: str, rest: List[str]) -> None:
 
 if __name__ == '__main__':
     cwd = os.getcwd()
-    os.environ['GITHUB_PATH'] = cwd + ':' + os.environ['GITHUB_PATH']
-    print(os.environ)
-    os.chmod("./sonar-scanner", 777)
+    # os.environ['GITHUB_PATH'] = cwd + ':' + os.environ['GITHUB_PATH']
+    with open(os.environ['GITHUB_ENV'], 'a') as f:
+        f.write(f"PATH=${cwd}:${os.environ['PATH']}\n")
+    print("PATH within script =", os.environ['PATH'])
+    # os.chmod("./sonar-scanner", 777)
     # parser = ArgumentParser(formatter_class=ArgumentDefaultsHelpFormatter)
     # parser.set_defaults(func=parser.print_help)
 
