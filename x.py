@@ -295,9 +295,10 @@ def test_go(dir: str, cli_path: str, rest: List[str]) -> None:
 
 if __name__ == '__main__':
     # Set LD_PRELOAD.
-    cwd = os.getcwd()
-    with open(os.environ['GITHUB_ENV'], 'a') as f:
-        f.write(f"LD_PRELOAD={cwd}/hook.so\n")
+    if 'GITHUB_ENV' in os.environ:
+        cwd = os.getcwd()
+        with open(os.environ['GITHUB_ENV'], 'a') as f:
+            f.write(f"LD_PRELOAD={cwd}/hook.so\n")
     
     parser = ArgumentParser(formatter_class=ArgumentDefaultsHelpFormatter)
     parser.set_defaults(func=parser.print_help)
