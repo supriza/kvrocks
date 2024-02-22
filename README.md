@@ -230,3 +230,5 @@ Apache Kvrocks is licensed under the Apache License Version 2.0. See the [LICENS
 - WeChat Official Account (in Chinese, scan the QR code to follow)
 
 ![WeChat official account](assets/wechat_account.jpg)
+
+fix typo.
