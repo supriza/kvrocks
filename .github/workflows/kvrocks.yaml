@@ -51,7 +51,6 @@ jobs:
           echo "docs_only=${{ fromJSON(steps.changes.outputs.all_count) == fromJSON(steps.changes.outputs.docs_count) && fromJSON(steps.changes.outputs.docs_count) > 0 }}" >> $GITHUB_OUTPUT
 
   check-typos:
-    if: false
     name: Check typos
     runs-on: ubuntu-22.04
     env:
@@ -64,7 +63,6 @@ jobs:
         run: typos --config .github/config/typos.toml
 
   check-and-lint:
-    if: false
     name: Lint and check code
     needs: [precondition]
     # if: ${{ needs.precondition.outputs.docs_only != 'true' }}
@@ -465,7 +463,6 @@ jobs:
 
   required:
     # if: always()
-    if: false
     name: Required
     runs-on: ubuntu-latest
     needs:
